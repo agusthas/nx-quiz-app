@@ -1,11 +1,23 @@
 import { MantineProvider } from '@mantine/core';
-import { Route, Switch } from 'wouter';
+import { useEffect } from 'react';
+import { Route, Switch, useLocation } from 'wouter';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
-import StartQuiz from './pages/StartQuiz/StartQuiz';
 import OngoingQuiz from './pages/OngoingQuiz/OngoingQuiz';
+import Result from './pages/Result/Result';
+import StartQuiz from './pages/StartQuiz/StartQuiz';
+import useAppStore from './store/store';
 
 export function App() {
+  const [, navigate] = useLocation();
+  const questionSet = useAppStore((state) => state.questionSet);
+
+  useEffect(() => {
+    if (questionSet) {
+      navigate('/quiz/ongoing/1');
+    }
+  }, []);
+
   return (
     <MantineProvider
       withGlobalStyles
@@ -20,6 +32,7 @@ export function App() {
         <Route path="/login" component={Login} />
 
         <Route path="/quiz/start" component={StartQuiz} />
+        <Route path="/quiz/result" component={Result} />
         <Route path="/quiz/ongoing/:id">
           {(params) => {
             if (params.id) {

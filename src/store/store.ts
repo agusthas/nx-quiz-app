@@ -35,9 +35,37 @@ const useAppStore = create<AppState>()(
           answers[questionNumber] = answer;
           set({ answers });
         },
+        clearAnswers: () => set({ answers: [] }),
+
+        result: {
+          answered: 0,
+          correct: 0,
+          incorrect: 0,
+          score: 0,
+        },
+        setResult: (result) => set({ result }),
+        clearResult: () =>
+          set({
+            result: {
+              answered: 0,
+              correct: 0,
+              incorrect: 0,
+            },
+          }),
+
+        clearAppState: () => {
+          get().clearQuestionSet();
+          get().clearResult();
+          get().clearAnswers();
+        },
       }),
       {
         name: 'app-storage',
+        partialize: (state) => ({
+          user: state.user,
+          questionSet: state.questionSet,
+          answers: state.answers,
+        }),
       }
     ),
     {

@@ -22,6 +22,12 @@ export type Answer = {
   [questionNumber: number]: string;
 };
 
+export type Result = {
+  answered: number;
+  correct: number;
+  incorrect: number;
+};
+
 export type AppState = {
   user?: User;
   login: (email: string, password: string) => void;
@@ -34,4 +40,11 @@ export type AppState = {
 
   answers: Answer[];
   pushAnswer: (questionNumber: number, answer: string) => void;
+  clearAnswers: () => void;
+
+  result: Result;
+  setResult: (result: Result) => void;
+  clearResult: () => void;
+
+  clearAppState: () => void;
 };
