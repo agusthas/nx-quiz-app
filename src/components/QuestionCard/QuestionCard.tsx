@@ -11,6 +11,9 @@ export function QuestionCard(props: QuestionCardProps) {
   const questionSet = useAppStore((state) => state.questionSet);
   const answers = useAppStore((state) => state.answers);
   const pushAnswer = useAppStore((state) => state.pushAnswer);
+  const setCurrentQuestionNumber = useAppStore(
+    (state) => state.setCurrentQuestion
+  );
   const [, navigate] = useLocation();
 
   if (!questionSet) {
@@ -22,6 +25,7 @@ export function QuestionCard(props: QuestionCardProps) {
   const handleAnswerClick = (answer: string) => {
     pushAnswer(props.questionIndex, answer);
     if (props.questionIndex !== questionSet.questions.length - 1) {
+      setCurrentQuestionNumber(props.questionIndex + 2);
       navigate(`/quiz/ongoing/${props.questionIndex + 2}`);
     }
   };

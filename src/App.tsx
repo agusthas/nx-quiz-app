@@ -11,11 +11,13 @@ import useAppStore from './store/store';
 export function App() {
   const [, navigate] = useLocation();
   const questionSet = useAppStore((state) => state.questionSet);
+  const currentQuestion = useAppStore((state) => state.currentQuestion);
 
   useEffect(() => {
     if (questionSet) {
-      navigate('/quiz/ongoing/1');
+      navigate(`/quiz/ongoing/${currentQuestion}`);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

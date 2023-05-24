@@ -46,5 +46,8 @@ export type AppState = {
   setResult: (result: Result) => void;
   clearResult: () => void;
 
+  currentQuestion: number;
+  setCurrentQuestion: (questionNumber: number) => void;
+
   clearAppState: () => void;
 };

@@ -1,4 +1,4 @@
-import { Box, Button, Container } from '@mantine/core';
+import { Box, Container } from '@mantine/core';
 import QuestionCard from 'src/components/QuestionCard/QuestionCard';
 import QuestionNumberIndicator from 'src/components/QuestionNumberIndicator/QuestionNumberIndicator';
 import SubmitQuestionButton from 'src/components/SubmitQuestionButton/SubmitQuestionButton';

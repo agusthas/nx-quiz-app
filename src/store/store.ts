@@ -53,10 +53,16 @@ const useAppStore = create<AppState>()(
             },
           }),
 
+        currentQuestion: 1,
+        setCurrentQuestion: (questionNumber) => {
+          set({ currentQuestion: questionNumber });
+        },
+
         clearAppState: () => {
           get().clearQuestionSet();
           get().clearResult();
           get().clearAnswers();
+          get().setCurrentQuestion(1);
         },
       }),
       {
@@ -65,6 +71,7 @@ const useAppStore = create<AppState>()(
           user: state.user,
           questionSet: state.questionSet,
           answers: state.answers,
+          currentQuestion: state.currentQuestion,
         }),
       }
     ),
